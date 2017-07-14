@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "画面1", "画面1\画面1.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "画面2", "画面2\画面2.csproj", "{98932B79-8CD4-4022-AAE2-3B481EB34A9F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "共通", "共通\共通.csproj", "{F81C57C4-FFCF-42D3-BB4D-75A0860D7D40}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{98932B79-8CD4-4022-AAE2-3B481EB34A9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98932B79-8CD4-4022-AAE2-3B481EB34A9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98932B79-8CD4-4022-AAE2-3B481EB34A9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F81C57C4-FFCF-42D3-BB4D-75A0860D7D40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F81C57C4-FFCF-42D3-BB4D-75A0860D7D40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F81C57C4-FFCF-42D3-BB4D-75A0860D7D40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F81C57C4-FFCF-42D3-BB4D-75A0860D7D40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
