@@ -21,6 +21,9 @@ namespace 共通
         void Save();
     }
 
+    /// <summary>
+    /// ApplicationSettingsBaseを使用した簡易版
+    /// </summary>
     public class WindowSettings2 : ApplicationSettingsBase, IWindowSettings
     {
         public WindowSettings2(Window window) : base(window.GetType().FullName) { }
@@ -33,6 +36,11 @@ namespace 共通
         }
     }
 
+    /// <summary>
+    /// 保存先及び内容のカスタマイズ版
+    /// </summary>
+    /// mscorlib.dllで例外が発生するのは、XmlSerializerを使用しているため。
+    /// 回避するためにはsgen.exeで「指定されたアセンブリの型に対して XML シリアル化アセンブリを作成」する。
     public class WindowSettings : IWindowSettings
     {
         string name = null;

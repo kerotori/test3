@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows;
 using System.Windows.Interop;
 
@@ -21,8 +23,26 @@ namespace 共通
         #endregion
 
 
+        private Semaphore semaphore = null;
+
+
         protected override void OnSourceInitialized(EventArgs e)
         {
+            bool createdNew = false;
+
+            // Semaphoreクラスのインスタンスを生成し、アプリケーション終了まで保持する
+            semaphore = new Semaphore(1, 1, this.GetType().FullName, out createdNew);
+
+            if (!createdNew)
+            {
+                // 他のプロセスが先にセマフォを作っていた
+
+                this.Visibility = Visibility.Collapsed;
+                semaphore.Dispose();
+                semaphore = null;
+                return; // プログラム終了
+            }
+
             base.OnSourceInitialized(e);
 
             // 外部からウィンドウ設定の保存・復元クラスが与えられていない場合は、既定実装を使用する
@@ -47,8 +67,14 @@ namespace 共通
 
         protected override void OnClosing(CancelEventArgs e)
         {
+            // セマフォを開放
+            semaphore.Dispose();
+            semaphore = null;
+
+            // クローズ処理
             base.OnClosing(e);
 
+            // 画面位置・サイズを保存
             if (!e.Cancel)
             {
                 WINDOWPLACEMENT placement;
