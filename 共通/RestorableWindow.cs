@@ -22,24 +22,16 @@ namespace 共通
 
         #endregion
 
-
-        private Semaphore semaphore = null;
-
+        MultipleControl semaphore;
 
         protected override void OnSourceInitialized(EventArgs e)
         {
-            bool createdNew = false;
-
-            // Semaphoreクラスのインスタンスを生成し、アプリケーション終了まで保持する
-            semaphore = new Semaphore(1, 1, this.GetType().FullName, out createdNew);
-
-            if (!createdNew)
+            semaphore = new MultipleControl(this);
+            if (!semaphore.IsCreate())
             {
                 // 他のプロセスが先にセマフォを作っていた
 
                 this.Visibility = Visibility.Collapsed;
-                semaphore.Dispose();
-                semaphore = null;
                 return; // プログラム終了
             }
 
@@ -68,8 +60,7 @@ namespace 共通
         protected override void OnClosing(CancelEventArgs e)
         {
             // セマフォを開放
-            semaphore.Dispose();
-            semaphore = null;
+            semaphore.Releace();
 
             // クローズ処理
             base.OnClosing(e);

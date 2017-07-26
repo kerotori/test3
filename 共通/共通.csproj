@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="RestorableWindow.cs" />
+    <Compile Include="RestorableWindow\MultipleControl.cs" />
     <Compile Include="RestorableWindow\WindowsSettings.cs" />
   </ItemGroup>
   <ItemGroup>
